@@ -17,19 +17,15 @@ const config = {
                 test: /\.vue$/,
                 loader: 'vue-loader'
             },
-            // 将css写入到HTML
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',  // 将模块的导出作为样式添加到 DOM 中
-                    'css-loader' // 解析 CSS 文件后，使用 import 加载，并且返回 CSS 代码
-                ]
+                test: /\.jsx$/,
+                loader: 'babel-loader'
             },
             // stylus-loader处理stylus文件,解析成css文件，交给css-loader，然后再使用style-loader插入到DOM，一层一层向上传递
             {
                 test: /\.styl/,
                 use: [
-                    'style-loader',
+                    'vue-style-loader',
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -47,11 +43,7 @@ const config = {
                     limit: 1024,  //将小于1024d的图片转为base64打包到js文件中，减少http请求
                     name: '[name].[ext]'
                 }
-            },
-            {
-                test: /\.jsx$/,
-                loader: 'babel-loader'
-            },
+            }
         ]
     },
     plugins: [
