@@ -29,9 +29,15 @@ const config = {
             {
                 test: /\.styl/,
                 use: [
-                  'style-loader',
-                  'css-loader',
-                  'stylus-loader'
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    'stylus-loader'
                 ]
             },
             {
@@ -41,12 +47,16 @@ const config = {
                     limit: 1024,  //将小于1024d的图片转为base64打包到js文件中，减少http请求
                     name: '[name].[ext]'
                 }
-            }
+            },
+            {
+                test: /\.jsx$/,
+                loader: 'babel-loader'
+            },
         ]
     },
     plugins: [
         // new CleanWebpackPlugin(),
-        
+
         // 请确保引入这个插件！
         new VueLoaderPlugin(),
         new HTMLPlugin()
