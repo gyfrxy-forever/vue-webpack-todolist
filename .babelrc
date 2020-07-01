@@ -1,6 +1,6 @@
 {
   "presets": [
-      "env"  // 按需转码
+      "@babel/preset-env"  // 按需转码
   ],
   "plugins": [
       "transform-vue-jsx"   // 转换vue中的jsx语法
